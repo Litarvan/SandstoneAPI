@@ -1,0 +1,33 @@
+apply plugin: 'java'
+
+group = 'fr.theshark34.sandstone'
+version = '1.0.0-SNAPSHOT'
+archivesBaseName = 'sandstone-api'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+compileJava.options.encoding = 'UTF-8'
+
+project.buildDir = 'target'
+task copyLicense {
+    doLast {
+        copy {
+            from "LICENSE"
+            into "$buildDir"
+        }
+
+        copy {
+            from "LICENSE.LESSER"
+            into "$buildDir"
+        }
+    }
+}
+
+task help {
+	doLast {
+		println "\nTo use the API, download it using 'git submodule update' in a command-line,"
+		println "then it will be built when you build sandstone or do 'gradlew :SandstoneAPI:build',"
+		println "and the jar will be in SandstoneAPI/target/libs/sandstone-api-" + version + ".jar.\n"
+	}
+}
